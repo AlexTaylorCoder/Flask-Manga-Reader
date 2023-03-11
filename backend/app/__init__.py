@@ -7,7 +7,9 @@ db = SQLAlchemy(app)
 
 from app import views
 from app import models
+from app.scraper import MangakalotScraper, MangaParkScraper
 from mangadex import Mangadex
+
 
 
 

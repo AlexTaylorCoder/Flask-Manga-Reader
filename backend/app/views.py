@@ -1,5 +1,13 @@
 from app import app
 from mangadex import Mangadex
+from app.scraper import MangakalotScraper, MangaParkScraper
+from flask import request
+
+sourceMapping = {
+    "mangakakalot": MangakalotScraper(),
+    "mangapark": MangaParkScraper(),
+    "mangadex": Mangadex()
+}
 
 @app.route("/")
 def home():
@@ -15,10 +23,20 @@ def update():
 #Browse searchword = request.args.get('key', '')
 @app.route("/search")
 def search():
-    mangaSearch = Mangadex()
+    searchQuery = request.args.get("query")
+    sources = request.args.get("sources")
+    #Sources should list like one,two,three for multi query 
+    results = {}
+    for source in sources.split(","):
+        targetedSource = sourceMapping[source]
+        sourceInfo = targetedSource.search(searchQuery)
+        results[source] = sourceInfo
+
+    return results
     # args = request.args
     # data = mangaSearch.search(args)
     # print(data)
+    
 
 @app.route("/manga/<id>/details")
 def details():
