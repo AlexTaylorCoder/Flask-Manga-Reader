@@ -9,13 +9,13 @@ import NavBar from "./pages/navbar";
 
 function App() {
   return (
-    <div className="App">
+    <div id="app">
       <NavBar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/settings" element={<Profile/>}/>
         <Route path="/history" element={<History/>}/>
-        <Route path="/update" element={<Update/>}/>
+        <Route path="/updates" element={<Update/>}/>
       </Routes>
     </div>
   );

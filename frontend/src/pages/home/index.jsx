@@ -1,10 +1,12 @@
-
+import Home from "./homecontent"
+import BottomBar from "./bottombar"
 
 function Index() {
 
     return (
-        <div id = "home">
-            <div className="bg-emerald-500 w-52 h-52 rounded-full shadow-2xl"/>
+        <div id = "home" className="h-screen">
+            <Home/>
+            <BottomBar/>
         </div>
     )
 }
