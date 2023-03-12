@@ -37,6 +37,21 @@ class MangakalotScraper:
         self.selectbody(scrapedHTML)
     def search(self,query):
         scrapedHTML = Scraper(f"{self.search_url}{query}?page={self.search_page}").soup
+
+        mangas = scrapedHTML.select("div .panel_story_list .story_item")
+        for manga in mangas:
+            link = manga.select_one("a")
+            cover_url = manga.select_one("img")
+
+            rightside = manga.select_one("story_item_right")
+
+            header = rightside.select_one(".story_name a")
+
+            title = header.text 
+            latest_url = header["href"]
+            
+
+        breakpoint()
         self.selectbody(scrapedHTML)
     def selectbody(self,html):
         return html.select("body > div.container > div.main-wrapper > div.leftCol.listCol > div")
